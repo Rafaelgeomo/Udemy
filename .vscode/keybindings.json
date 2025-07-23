@@ -1,0 +1,12 @@
+[
+    {
+        "key": "ctrl+alt+n",
+        "command": "workbench.action.terminal.clear",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+n",
+        "command": "code-runner.run",
+        "when": "editorTextFocus"
+    }
+]
