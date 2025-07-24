@@ -1,0 +1,119 @@
+/* Importando a fonte Open Sans do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth@0,75..100;1,75..100&display=swap');
+
+/* Definindo variáveis de cores para reutilização */
+:root {
+   --primary-color:rgb(17,86,102);
+   --primary-color-dark:rgb(9,48,56);
+}
+
+/* Reset básico para todos os elementos */
+* {
+   box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
+   outline: 0;   
+}
+body {
+   margin: 0;
+   padding: 0;
+   background: var(--primary-color); 
+   font-family: 'Open Sans', sans-serif;  
+   font-size: 1em;
+   line-height: 1.5em;
+}
+
+.container {
+   max-width: 640px;
+   margin: 40px auto;
+   background: #fff;
+   padding: 20px;
+   border-radius: 10px;   
+}
+
+h1 {
+   font-size: 30px;
+   font-weight: 700;
+}
+
+.tabelas {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 40px;
+   font-size: 16px;
+}
+
+.imc, .resultado {
+   width: 45%;
+}
+
+.imc h2, .resultado h2 {
+   margin-bottom: 20px;
+}
+
+.imc p, .resultado p {
+   margin: 10px 0;
+}
+
+form input, form label, form button {
+   display: block;
+   width: 100%;
+   margin-bottom: 10px;   
+}
+
+form label {
+   font-size: 18px;
+   font-weight: 700;
+}
+
+form input {
+   font-size: 16px;
+   height: 50px;
+   padding: 0 20px;
+}
+
+form input:focus {
+   outline: 1px solid var(--primary-color);
+}
+
+form button {
+   border: none;
+   background: var(--primary-color);
+   color: #fff;
+   font-size: 18px;
+   font-weight: 700;
+   height: 50px;
+   cursor: pointer;
+   margin-top: 30px;
+}
+
+form button:hover {
+   background: var(--primary-color-dark);
+}
+
+/* Container para as mensagens (resultado e alerta) */
+.mensagem-container {
+   margin-top: 20px;
+   min-height: 44px; /* Altura mínima para evitar "pulos" no layout */
+}
+
+/* Estilos base para mensagens de resultado e alerta */
+.resultadoImc, .alerta {
+   padding: 10px;
+   border-radius: 4px;
+   text-align: center;
+   display: none; /* Esconde por padrão */
+}
+
+/* Mostra o resultado apenas quando houver conteúdo (:not(:empty)) */
+.resultadoImc:not(:empty) {
+   display: block;
+   background-color: #4CAF50; /* Verde para sucesso */
+   color: white;
+}
+
+/* Mostra o alerta apenas quando houver conteúdo (:not(:empty)) */
+.alerta:not(:empty) {
+   display: block;
+   background-color: #f44336; /* Vermelho para erro */
+   color: white;
+}
+
