@@ -101,9 +101,19 @@ function calculoImc() {
       resultadoImc.innerHTML = "";
       alerta.innerHTML = "";
 
+      // Função para remover os destaques
+      function removerDestaques() {
+         document
+            .querySelectorAll(".imc p, .resultado p")
+            .forEach((p) => {
+               p.classList.remove("destacado");
+            });
+      }
+
       // Verifica se ambos os campos estão vazios
       if (pesoDigitado === "" && alturaDigitada === "") {
          alerta.innerHTML = "Peso e Altura Inválidos";
+         removerDestaques();
          return false;
       }
       // Verifica se o peso é válido (não vazio, é um número e maior que zero)
@@ -113,6 +123,7 @@ function calculoImc() {
          pesoDigitado <= 0
       ) {
          alerta.innerHTML = "Peso Inválido";
+         removerDestaques();
          return false;
       }
       // Verifica se a altura é válida (não vazia, é um número e maior que zero)
@@ -122,6 +133,7 @@ function calculoImc() {
          alturaDigitada <= 0
       ) {
          alerta.innerHTML = "Altura Inválida";
+         removerDestaques();
          return false;
       }
       return true; // Retorna true se todas as validações passarem
