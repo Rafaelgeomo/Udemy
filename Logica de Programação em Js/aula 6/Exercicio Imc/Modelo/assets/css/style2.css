@@ -118,7 +118,7 @@ form button:hover {
 }
 /* Estilo adicional para a versão com destaque */
 .destacado {
-   background-color: var(--primary-color);
+   background-color: #4CAF50;
    color: white;
    padding: 5px;
    border-radius: 4px;
