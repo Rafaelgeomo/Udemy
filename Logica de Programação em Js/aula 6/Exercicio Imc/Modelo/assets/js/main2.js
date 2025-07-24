@@ -40,11 +40,7 @@ function calculoImc() {
       altura.value = "";
 
       // Remove destaques anteriores
-      document
-         .querySelectorAll(".imc p, .resultado p")
-         .forEach((p) => {
-            p.classList.remove("destacado");
-         });
+      removerDestaques();
 
       // Função para destacar os valores correspondentes
       function destacarValores(imcIndex) {
@@ -55,6 +51,10 @@ function calculoImc() {
             imcItems[imcIndex].classList.add("destacado");
             resultadoItems[imcIndex].classList.add("destacado");
          }
+         console.log(
+            "Elemento selecionado:",
+            imcItems[imcIndex].textContent
+         );
       }
 
       if (imc < 18.5) {
@@ -90,6 +90,15 @@ function calculoImc() {
       }
    }
 
+   // Função para remover os destaques
+   function removerDestaques() {
+      document
+         .querySelectorAll(".imc p, .resultado p")
+         .forEach((p) => {
+            p.classList.remove("destacado");
+         });
+   }
+
    /**
     * Valida os valores de peso e altura inseridos
     * @param {number} pesoDigitado - Peso inserido pelo usuário
@@ -100,15 +109,6 @@ function calculoImc() {
       // Limpa as mensagens anteriores
       resultadoImc.innerHTML = "";
       alerta.innerHTML = "";
-
-      // Função para remover os destaques
-      function removerDestaques() {
-         document
-            .querySelectorAll(".imc p, .resultado p")
-            .forEach((p) => {
-               p.classList.remove("destacado");
-            });
-      }
 
       // Verifica se ambos os campos estão vazios
       if (pesoDigitado === "" && alturaDigitada === "") {
