@@ -1,106 +1,65 @@
+// Seleciona o elemento HTML com a classe 'container'
 const exibir = document.querySelector('.container');
-const data = new Date();
-const diaSemana = data.getDay();
-const mesAno = data.getMonth();
-const mesAnoTexto = getMesTexto(mesAno);
-const diaSemanaTexto = getDiaSemanaTexto(diaSemana);
-const dataBrasil = formataData(data);
 
+// Cria um novo objeto de data com a data/hora atual
+const data = new Date();
+
+// Obtém o dia da semana (0-6, onde 0 é domingo)
+const diaSemana = data.getDay();
+
+// Obtém o mês (0-11, onde 0 é janeiro)
+const mesAno = data.getMonth();
+
+// Converte o número do mês para seu nome por extenso
+const mesAnoTexto = getMesTexto(mesAno);
+
+// Converte o número do dia da semana para seu nome por extenso
+const diaSemanaTexto = getDiaSemanaTexto(diaSemana);
+
+// Formata a data completa com hora
+const dataBrasil = formataHora(data);
+
+/**
+ * Adiciona zero à esquerda para números menores que 10
+ * @param {number} num - Número a ser formatado
+ * @returns {string} Número formatado com zero à esquerda se necessário
+ */
 function zeroAEsquerda(num) {
    return num >= 10 ? num : `0${num}`;
 }
 
-function formataData(data) {
-   const dia = zeroAEsquerda(data.getDate()); // Obtém e formata o dia   
-   const ano = zeroAEsquerda(data.getFullYear()); // Obtém e formata o ano
-   const hora = zeroAEsquerda(data.getHours()); // Obtém e formata a hora
-   const minuto = zeroAEsquerda(data.getMinutes()); // Obtém e formata os minutos 
-
-   return `${diaSemanaTexto}, ${dia} de ${mesAnoTexto} de ${ano} ${hora}:${minuto}`;
+/**
+ * Formata a data e hora no padrão brasileiro
+ * @param {Date} data - Objeto Date para formatar
+ * @returns {string} Data formatada (ex: "sexta-feira, 25 de julho de 2025 10:30")
+ */
+function formataHora(data) {
+   const hora = zeroAEsquerda(data.getHours());
+   const minuto = zeroAEsquerda(data.getMinutes());
+   return `${diaSemanaTexto}, ${data.getDate()} de ${mesAnoTexto} de ${data.getFullYear()} ${hora}:${minuto}`;
 }
 
+/**
+ * Converte o número do dia da semana para texto
+ * @param {number} diaSemana - Número do dia (0-6)
+ * @returns {string} Nome do dia da semana por extenso
+ */
 function getDiaSemanaTexto(diaSemana) {
-   let diaSemanaTexto;
-
-   // Estrutura switch para converter o número do dia em texto
-   switch (diaSemana) {
-      case 0:
-         diaSemanaTexto = 'Domingo';
-         return diaSemanaTexto;
-      case 1:
-         diaSemanaTexto = 'Segunda-feira';
-         return diaSemanaTexto;
-      case 2:
-         diaSemanaTexto = 'Terça-feira';
-         return diaSemanaTexto;
-      case 3:
-         diaSemanaTexto = 'Quarta-feira';
-         return diaSemanaTexto;
-      case 4:
-         diaSemanaTexto = 'Quinta-feira';
-         return diaSemanaTexto;
-      case 5:
-         diaSemanaTexto = 'Sexta-feira';
-         return diaSemanaTexto;
-      case 6:
-         diaSemanaTexto = 'Sábado';
-         return diaSemanaTexto;
-      default:
-         // Caso seja passado um número inválido, retorna string vazia
-         diaSemanaTexto = '';
-         return diaSemanaTexto;
-   }
+   const diasSemana = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+   return diasSemana[diaSemana];
 }
 
+/**
+ * Converte o número do mês para texto
+ * @param {number} mesAno - Número do mês (0-11)
+ * @returns {string} Nome do mês por extenso
+ */
 function getMesTexto(mesAno) {
-   let mesAnoTexto;
-
-   // Estrutura switch para converter o número do dia em texto
-   switch (mesAno) {
-      case 0:
-         mesAnoTexto = 'Janeiro';
-         return mesAnoTexto;
-      case 1:
-         mesAnoTexto = 'Fevereiro';
-         return mesAnoTexto;
-      case 2:
-         mesAnoTexto = 'Março';
-         return mesAnoTexto;
-      case 3:
-         mesAnoTexto = 'Abril';
-         return mesAnoTexto;
-      case 4:
-         mesAnoTexto = 'Maio';
-         return mesAnoTexto;
-      case 5:
-         mesAnoTexto = 'Junho';
-         return mesAnoTexto;
-      case 6:
-         mesAnoTexto = 'Julho';
-         return mesAnoTexto;
-      case 7:
-         mesAnoTexto = 'Agosto';
-         return mesAnoTexto;
-      case 8:
-         mesAnoTexto = 'Setembro';
-         return mesAnoTexto;
-      case 9:
-         mesAnoTexto = 'Outubro';
-         return mesAnoTexto;
-      case 10:
-         mesAnoTexto = 'Novembro';
-         return mesAnoTexto;
-      case 11:
-         mesAnoTexto = 'Dezembro';
-         return mesAnoTexto;
-      default:
-         // Caso seja passado um número inválido, retorna string vazia
-         mesAnoTexto = '';
-         return mesAnoTexto;
-   }
+   const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+   return meses[mesAno];
 }
 
-
+// Insere a data formatada no elemento HTML
 exibir.innerHTML = dataBrasil;
 
 
